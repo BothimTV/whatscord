@@ -1,4 +1,4 @@
-# whatscord
+# WhatsCord - Connect WhatsApp with Discord
 A bot that connects your WhatsApp with a Discord bot!
 This is my first public bot - it´s going to get better later!
 It creates automaticly new channels for receved messages and more.
