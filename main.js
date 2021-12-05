@@ -70,7 +70,6 @@ waClient.on('message', async (msg) => {
                 message.reviceFile(msg, convMessage(msg.body), "attachment.mp3", client)
             }
         }
-        console.log(msg)
     } else {
         message.revice(msg, client)
         MsgToName(msg, client)
