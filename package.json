@@ -1,0 +1,22 @@
+{
+  "name": "whatsapp-bot",
+  "version": "0.0.1",
+  "description": "A bot that connects your WhatsApp with a Discord!",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bothim_TV",
+  "license": "MIT",
+  "dependencies": {
+    "@discordjs/rest": "^0.1.0-canary.0",
+    "awesome-qr": "^2.1.5-rc.0",
+    "discord-api-types": "^0.25.2",
+    "discord.js": "^13.3.1",
+    "fs": "^0.0.1-security",
+    "node-cron": "^3.0.0",
+    "qr-generator": "^1.0.1",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.15.2"
+  }
+}
