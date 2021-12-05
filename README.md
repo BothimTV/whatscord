@@ -18,7 +18,8 @@ IF YOU DELETE AN CHANNEL THE BOT WILL CRASH AT NEW MEEAGES TO THE CONTACT - TO F
 7. Get all Channel and the Guild ID (Group Category, Chat Category, Log Channel, Sensetive Channel)
 8. Save All informations in the config.json
 9. Install: discord.js, fs, request, whatsapp-web.js, node-cron, qrcode-terminal, @discordjs/rest, discord-api-types
-10. Scan the QR Code from the console - enjoi!
+10. Scan the QR Code from the console - enjoy!
+>> NOTE: You cant be in the WhatApp beta build and you cant use WhatsApp web!
 
 
 WARNING - BETA BUILD - It may crash by spamming, etc.!
