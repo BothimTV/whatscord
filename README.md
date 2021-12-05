@@ -3,7 +3,7 @@ A bot that connects your WhatsApp with a Discord bot!
 This is my first public bot - its going to get better later!
 It creates automaticly new channels for receved messages and more.
 
-You can start the bot with `node main.js` - to get the slsh commands use `node deploy-commands.js` (ONLY THE "ping" AND "name" COMMAND ARE WORKING)
+You can start the bot with `node main.js` - to get the slash commands use `node deploy-commands.js` (ONLY THE "ping" AND "name" COMMAND ARE WORKING)
 IF THE CHANNEL NAME IS NOT UPDATING - WAIT 10 MIN AND TRY AGAIN!
 IF YOU DELETE AN CHANNEL THE BOT WILL CRASH AT NEW MEEAGES TO THE CONTACT - TO FIX THAT, DELETE THE NUMBER(.json) UNDER "/users/number.json"!
 
