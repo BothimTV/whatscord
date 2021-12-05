@@ -23,3 +23,17 @@ IF YOU DELETE AN CHANNEL THE BOT WILL CRASH AT NEW MEEAGES TO THE CONTACT - TO F
 
 
 WARNING - BETA BUILD - It may crash by spamming, etc.!
+
+
+# TODO:
+
+- CallFunction
+- ThreadConnection (WhatsApp reply = new Thread)
+- Block/Unblock option
+- Add User Settings (f.e. disable log)
+- Auto Setup
+
+
+# Known Bugs:
+
+- Character limit: WhatsApp messages longer then 1024 characters = crash
