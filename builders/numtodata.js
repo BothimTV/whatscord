@@ -39,8 +39,8 @@ module.exports = {
 
         if (!fs.existsSync(`./users/${author}.json`)) {
 
-            const NewDataObj = { number: author, name: `Unknown (+${author})`, sensetive: false, channel: null, group: false, remote: null }
-            return NewDataObj
+            const data = fs.readFileSync(`./users/unknown.json`, { encoding: 'utf8' })
+                return data
 
         } else {
             const data = fs.readFileSync(`./users/${author}.json`, { encoding: 'utf8' })

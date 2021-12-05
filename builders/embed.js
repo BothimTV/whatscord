@@ -112,16 +112,6 @@ module.exports = {
                 ]
             })
 
-            if (data.channel == null) {
-                channel.guild.channels.create(data.number, {
-                    type: "GUILD_TEXT"
-                }).then((channel) => {
-                    channel.setParent(UserParentID);
-                    const NewDataObj = { number: data.number, name: data.name, sensetive: data.sensetive, channel: channel.id, group: data.group }
-                    fs.writeFile(`./users/${data.number}.json`, JSON.stringify(NewDataObj), err => { return err })
-                })
-            }
-
         }, 200)
     },
 
