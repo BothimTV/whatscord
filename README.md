@@ -17,7 +17,7 @@ IF YOU DELETE AN CHANNEL THE BOT WILL CRASH AT NEW MEEAGES TO THE CONTACT - TO F
 6. Invite the Bot using the URL Generator in the OAuth2 Tab (URL at the bottom): ![image](https://user-images.githubusercontent.com/50715457/144756303-2c106268-23a3-48f0-835e-f709aff300f7.png)
 7. Get all Channel and the Guild ID (Group Category, Chat Category, Log Channel, Sensetive Channel)
 8. Save All informations in the config.json
-9. Install: discord.js, fs, request, whatsapp-web.js, node-cron, qrcode-terminal, @discordjs/rest, discord-api-types
+9. Install: discord.js, fs, request, whatsapp-web.js, node-cron, qrcode-terminal, @discordjs/rest, discord-api-types `npm i discord.js fs request whatsapp-web.js node-cron qrcode-terminal @discordjs/rest discord-api-types` NodeJS version 16.6 is required
 10. Scan the QR Code from the console - enjoy!
 
 NOTE: You cant be in the WhatApp beta build and you cant use WhatsApp web!
