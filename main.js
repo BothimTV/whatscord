@@ -9,7 +9,8 @@ const message = require('./message/message');
 const { convMessage, MsgToName } = require('./builders/converter');
 var cron = require('node-cron');
 const whatsapp = require('./detection/whatsapp');
-const embed = require('./builders/embed')
+const embed = require('./builders/embed');
+const file = require('./detection/file');
 
 const client = new Client({ intents: 32767 });
 const waClient = waclient.create()
@@ -54,6 +55,16 @@ client.on("messageCreate", async (msg) => {
     message.send(msg, waClient)
 })
 
+cron.schedule('*/4 * * * * *', async () => {
+    const state = await waClient.getState()
+    whatsapp.check(state, client)
+});
+
+cron.schedule('0 * * * * *', () => {
+    file.users(client)
+});
+
+
 waClient.on('message', async (msg) => {
     if (msg.from === 'status@broadcast') return
     if (msg.hasMedia) {
@@ -78,10 +89,6 @@ waClient.on('message', async (msg) => {
 
 waClient.initialize();
 
-cron.schedule('*/4 * * * * *', async () => {
-    const state = await waClient.getState()
-    whatsapp.check(state, client)
-});
 
 waClient.on('disconnected', (reason) => {
     console.log("[WA-API] DISCONNECTED (" + reason + ")")
