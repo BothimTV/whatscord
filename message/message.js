@@ -22,7 +22,7 @@ module.exports = {
             const group = data.group
             const remote = data.remote
 
-            const message = msg.body.toString()
+            const message = msg.body.toString().slice(0, 1020)
             if (!message) return
 
             if (sensetive) {

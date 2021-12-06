@@ -1,13 +1,13 @@
 {
   "name": "whatsapp-bot",
-  "version": "0.0.1",
-  "description": "A bot that connects your WhatsApp with a Discord!",
+  "version": "1.0.0",
+  "description": "",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Bothim_TV",
-  "license": "MIT",
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "@discordjs/rest": "^0.1.0-canary.0",
     "awesome-qr": "^2.1.5-rc.0",
@@ -17,6 +17,7 @@
     "node-cron": "^3.0.0",
     "qr-generator": "^1.0.1",
     "qrcode-terminal": "^0.12.0",
+    "request": "^2.88.2",
     "whatsapp-web.js": "^1.15.2"
   }
 }

@@ -11,6 +11,9 @@ var cron = require('node-cron');
 const whatsapp = require('./detection/whatsapp');
 const embed = require('./builders/embed');
 const file = require('./detection/file');
+const { sync } = require('./deploy-commands');
+
+sync()
 
 const client = new Client({ intents: 32767 });
 const waClient = waclient.create()

@@ -56,6 +56,23 @@ module.exports = {
         })
     },
 
+    debugErr(channel, err, footer) {
+        channel.send({
+            embeds: [
+                new MessageEmbed()
+                    .setColor("RED")
+                    .addFields([
+                        {
+                            name: `An error occured:`,
+                            value: `Error: \`${err}\``
+                        }
+                    ])
+                    .setTimestamp()
+                    .setFooter(footer)
+            ]
+        })
+    },
+
     sendU(value, channel) {
         channel.send({
             embeds: [
