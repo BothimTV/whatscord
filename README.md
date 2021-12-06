@@ -38,10 +38,14 @@ WARNING - BETA BUILD - It may crash by spamming, etc.!
 - CallFunction
 - ThreadConnection (WhatsApp reply = new Thread)
 - Block/Unblock option
+- Group Options (set Name, Kick, Invite, etc.)
+- Add a VCard interpretation
 - Add User Settings (f.e. disable log)
 - Auto Setup
 - Add QR Code in Discord (Not in the console)
 - Add Support for Discord emojis (from Discord to WhatsApp)
+- Bot translation and lang setting
+- (maby auto translator)
 
 
 # Known Bugs:
