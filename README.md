@@ -33,6 +33,8 @@ WARNING - BETA BUILD - It may crash by spamming, etc.!
 - Block/Unblock option
 - Add User Settings (f.e. disable log)
 - Auto Setup
+- Add QR Code in Discord (Not in the console)
+- Add Support for Discord emojis (from Discord to WhatsApp)
 
 
 # Known Bugs:
