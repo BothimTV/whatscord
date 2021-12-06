@@ -3,7 +3,7 @@ A bot that connects your WhatsApp with a Discord bot!
 This is my first public bot - its going to get better later!
 It creates automaticly new channels for receved messages and more.
 
-You can start the bot with `node main.js` - to get the slash commands use `node deploy-commands.js` (ONLY THE "ping" AND "name" COMMAND ARE WORKING)
+You can start the bot with `node main.js` - to get the slash commands use `node deploy-commands.js`
 IF THE CHANNEL NAME IS NOT UPDATING - WAIT 10 MIN AND TRY AGAIN!
 IF YOU DELETE AN CHANNEL THE BOT WILL CRASH AT NEW MEEAGES TO THE CONTACT - TO FIX THAT, DELETE THE NUMBER(.json) UNDER "/users/number.json"!
 
@@ -28,26 +28,3 @@ IF YOU DELETE AN CHANNEL THE BOT WILL CRASH AT NEW MEEAGES TO THE CONTACT - TO F
 10. Scan the QR Code from the console - enjoy!
 
 NOTE: You cant be in the WhatApp beta build and you cant use WhatsApp web!
-
-
-WARNING - BETA BUILD - It may crash by spamming, etc.!
-
-
-# TODO:
-
-- CallFunction
-- ThreadConnection (WhatsApp reply = new Thread)
-- Block/Unblock option
-- Group Options (set Name, Kick, Invite, etc.)
-- Add a VCard interpretation
-- Add User Settings (f.e. disable log)
-- Auto Setup
-- Add QR Code in Discord (Not in the console)
-- Add Support for Discord emojis (from Discord to WhatsApp)
-- Bot translation and lang setting
-- (maby auto translator)
-
-
-# Known Bugs:
-
-- Character limit: WhatsApp messages longer then 1024 characters = crash
