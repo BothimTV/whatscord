@@ -5,21 +5,21 @@ const embed = require('../builders/embed.js')
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("name")
-        .setDescription("Setzte den namen einer Nummer.")
+        .setDescription("Set the name of a contact.")
         .addChannelOption((option => option
-            .setName("nummer")
+            .setName("number")
             .setDescription("z.B. #49123456789")
             .setRequired(true)))
         .addStringOption((option => option
-            .setName("namen")
+            .setName("name")
             .setDescription("z.B. Raihner Zufall")
             .setRequired(true)))
     ,
 
     async execute(interaction) {
 
-        const searchID = interaction.options.getChannel("nummer")
-        const name = interaction.options.getString("namen")
+        const searchID = interaction.options.getChannel("number")
+        const name = interaction.options.getString("name")
 
         try {
 

@@ -1,7 +1,7 @@
 {
-    "token":"Your Bot Token",
-    "GuildID":"Your Guild ID",
-    "ApplicationID":"Your Application ID",
+    "token":"",
+    "GuildID":"",
+    "ApplicationID":"",
     
     "SensetiveChannelID":"",
     "GroupParentID":"",
