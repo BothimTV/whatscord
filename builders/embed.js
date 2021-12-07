@@ -1,7 +1,7 @@
 const { MessageEmbed } = require('discord.js')
 const fs = require('fs')
-const who = require('./numtodata')
-const { GuildID, SensetiveChannelID, GroupParentID, UserParentID } = require("../config.json");
+const { UserParentID } = require("../config.json");
+const { getLate } = require('./fs');
 
 module.exports = {
 
@@ -110,11 +110,11 @@ module.exports = {
 
     sendG(value, channel, author) {
     
-        who.lateSearch(author)
+        getLate(author)
 
         setTimeout(function () {
 
-            const data = JSON.parse(who.lateSearch(author))
+            const data = JSON.parse(getLate(author))
 
             channel.send({
                 embeds: [
@@ -155,11 +155,11 @@ module.exports = {
 
     sendGf(value, file, channel, author) {
     
-        who.lateSearch(author)
+        getLate(author)
 
         setTimeout(function () {
 
-            const data = JSON.parse(who.lateSearch(author))
+            const data = JSON.parse(getLate(author))
 
             if (data.channel == null && data.remote != null) {
                 channel.guild.channels.create(data.number, {

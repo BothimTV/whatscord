@@ -1,111 +1,70 @@
-const { GuildID, SensetiveChannelID, GroupParentID, UserParentID } = require("../config.json");
+const { GuildID, SensetiveChannelID } = require("../config.json");
 const fs = require('fs')
-const who = require('../builders/numtodata');
 const embed = require("../builders/embed");
 const { MessageMedia } = require("whatsapp-web.js");
-const request = require('request')
+const request = require('request');
+const { get } = require("../builders/fs");
+const { createGroup, createChat, find } = require("../builders/channel");
 
 module.exports = {
 
     revice(msg, client) {
 
-        who.search(msg)
+        get(msg)
 
         setTimeout(function () {
 
-            const data = JSON.parse(who.search(msg))
+            const data = JSON.parse(get(msg)) // get data
 
-            const number = data.number
-            const name = data.name
-            const sensetive = data.sensetive
-            const numchannel = data.channel
-            const group = data.group
-            const remote = data.remote
-
-            const message = msg.body.toString().slice(0, 1020)
+            const message = msg.body.toString().slice(0, 1020) // block discord char limit
             if (!message) return
 
-            if (sensetive) {
-                const channel = client.guilds.cache.find(element => element == GuildID).channels.cache.find(element => element == SensetiveChannelID)
-                embed.sendU(`(Sensetive Message)\nMessage is from +${number}`, channel)
+            if (data.sensetive) {
+                embed.sendU(`(Sensetive Message)\nMessage is from +${data.number}`, find(SensetiveChannelID, client))
                 return
             }
 
-            if (numchannel == null && group) {
-                client.guilds.cache.find(element => element == GuildID).channels.create(number, {
-                    type: "GUILD_TEXT"
-                }).then((channel) => {
-                    channel.setParent(GroupParentID)
-                    const NewDataObj = { number: number, name: name, sensetive: sensetive, channel: channel.id, group: group, remote: remote }
-                    fs.writeFile(`./users/${number}.json`, JSON.stringify(NewDataObj), err => { return err })
-                    embed.sendG(message, channel, msg.author)
-                })
-            } else if (numchannel == null && !group) {
-                client.guilds.cache.find(element => element == GuildID).channels.create(number, {
-                    type: "GUILD_TEXT"
-                }).then((channel) => {
-                    channel.setParent(UserParentID)
-                    const NewDataObj = { number: number, name: name, sensetive: sensetive, channel: channel.id, group: group, remote: remote }
-                    fs.writeFile(`./users/${number}.json`, JSON.stringify(NewDataObj), err => { return err })
-                    embed.sendU(message, channel)
-                })
-            }
-
-            else if (numchannel != null && group) {
-                embed.sendG(message, client.guilds.cache.find(element => element == GuildID).channels.cache.find(element => element == numchannel), msg.author, client)
-            } else if (numchannel != null && !group) {
-                embed.sendU(message, client.guilds.cache.find(element => element == GuildID).channels.cache.find(element => element == numchannel))
+            if (data.channel == null && data.group) { // message with file in group - new channel
+                createGroup(client, JSON.parse(get(msg)), message, null, msg)
+            } else if (data.channel == null && !data.group) { // message with file in chat - new channel
+                createChat(client, JSON.parse(get(msg)), message, null, msg)
+            } else if (data.channel != null && data.group) { // message with file in group
+                embed.sendG(message, client.guilds.cache.find(element => element == GuildID).channels.cache.find(element => element == data.channel), msg.author, client)
+            } else if (data.channel != null && !data.group) { // message with file in chat
+                embed.sendU(message, client.guilds.cache.find(element => element == GuildID).channels.cache.find(element => element == data.channel))
             }
         }, 2000)
     },
 
     async reviceFile(msg, message, file, client) {
 
-        who.search(msg)
+        get(msg) // debug lookup
 
         setTimeout(function () {
+            const data = JSON.parse(get(msg)) // get data
 
-            const data = JSON.parse(who.search(msg))
-            const number = data.number
-            const name = data.name
-            const sensetive = data.sensetive
-            const numchannel = data.channel
-            const group = data.group
-            const remote = data.remote
-
-            if (sensetive) {
-                const channel = client.guilds.cache.find(element => element == GuildID).channels.cache.find(element => element == SensetiveChannelID)
-                embed.sendU(`(Sensetive Message with Attachment)\nMessage is from +${number}`, channel)
+            if (data.sensetive) {
+                embed.sendU(`(Sensetive Message with Attachment)\nMessage is from +${data.number}`, find(SensetiveChannelID, client))
                 return
             }
 
-            if (numchannel == null && group) {
-                client.guilds.cache.find(element => element == GuildID).channels.create(number, {
-                    type: "GUILD_TEXT"
-                }).then((channel) => {
-                    channel.setParent(GroupParentID)
-                    const NewDataObj = { number: number, name: name, sensetive: sensetive, channel: channel.id, group: group, remote: remote }
-                    fs.writeFile(`./users/${number}.json`, JSON.stringify(NewDataObj), err => { return err })
-                    embed.sendGf(message, file, channel, msg.author)
-                })
-            } else if (numchannel == null && !group) {
-                client.guilds.cache.find(element => element == GuildID).channels.create(number, {
-                    type: "GUILD_TEXT"
-                }).then((channel) => {
-                    channel.setParent(UserParentID)
-                    const NewDataObj = { number: number, name: name, sensetive: sensetive, channel: channel.id, group: group, remote: remote }
-                    fs.writeFile(`./users/${number}.json`, JSON.stringify(NewDataObj), err => { return err })
-                    embed.sendUf(message, file, channel)
-                })
-            }
-
-            else if (numchannel != null && group) {
-                embed.sendGf(message, file, client.guilds.cache.find(element => element == GuildID).channels.cache.find(element => element == numchannel), msg.author, client)
-            } else if (numchannel != null && !group) {
-                embed.sendUf(message, file, client.guilds.cache.find(element => element == GuildID).channels.cache.find(element => element == numchannel))
+            if (data.channel == null && data.group) { // message with file in group - new channel
+                createGroup(client, JSON.parse(get(msg)), message, file, msg)
+            } else if (data.channel == null && !data.group) { // message with file in chat - new channel
+                createChat(client, JSON.parse(get(msg)), message, file)
+            } else if (data.channel != null && data.group) { // message with file in group
+                embed.sendGf(message, file, client.guilds.cache.find(element => element == GuildID).channels.cache.find(element => element == data.channel), msg.author, client)
+            } else if (data.channel != null && !data.group) { // message with file in chat
+                embed.sendUf(message, file, client.guilds.cache.find(element => element == GuildID).channels.cache.find(element => element == data.channel))
             }
         }, 2000)
     },
+
+
+
+
+
+
 
     send(msg, waClient) {
         const searchID = msg.channel.id

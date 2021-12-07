@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
 const fs = require('fs')
 const embed = require('../builders/embed.js')
+const { getLate, write } = require("../builders/fs.js")
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -21,31 +22,18 @@ module.exports = {
         const searchID = interaction.options.getChannel("number")
         const name = interaction.options.getString("name")
 
-        try {
+        const users = fs.readdirSync('./users').filter(file => file.endsWith('.json'));
 
-            const users = fs.readdirSync('./users').filter(file => file.endsWith('.json'));
+        users.forEach((user) => {
+            const data = JSON.parse(getLate(user))
+            if (data.channel == searchID) {
 
-            users.forEach((user) => {
-                const data = JSON.parse(fs.readFileSync(`./users/${user}`, { encoding: 'utf8' }))
-                if (data.channel == searchID) {
-
-                    const data = JSON.parse(fs.readFileSync(`./users/${user}`, { encoding: 'utf8' }))
-
-                    const NewDataObj = { number: data.number, name: name, sensetive: data.sensetive, channel: data.channel, group: data.group, remote: data.remote }
-
-                    interaction.guild.channels.cache.find(element => element == data.channel).setName(name)
-                    fs.writeFile(`./users/${user}`, JSON.stringify(NewDataObj), err => { return err })
-
-                    embed.reply("Erfolg", "Der Name wurde erfolgrauch gesetzt!", interaction, false, 5)
-
-                    return
-                }
-            })
-
-        } catch (err) {
-            embed.reply("Fehler", "Ein Fehler ist aufgetreten!", interaction, false, 5)
-            console.log(err)
-        }
+                write(data.number, name, data.sensetive, data.channel, data.group, data.remote)
+                interaction.guild.channels.cache.find(element => element == data.channel).setName(name)
+                embed.reply("Erfolg", "Der Name wurde erfolgrauch gesetzt!", interaction, false, 5)
+                return
+            }
+        })
 
     }
 }

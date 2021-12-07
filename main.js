@@ -1,6 +1,6 @@
 console.clear()
 console.log("[SYSTEM] Loading...");
-var qrcode = require('qrcode-terminal');
+var QRCode = require('qrcode')
 const { Client, Collection } = require("discord.js");
 const { token, GuildID, LogChannel } = require("./config.json");
 const fs = require('fs');
@@ -12,6 +12,7 @@ const whatsapp = require('./detection/whatsapp');
 const embed = require('./builders/embed');
 const file = require('./detection/file');
 const { sync } = require('./deploy-commands');
+const { find } = require('./builders/channel');
 
 sync()
 
@@ -29,7 +30,8 @@ commandFiles.forEach((commandFile) => {
 
 waClient.on('qr', (qr) => {
     console.log("[WA-API] QR required")
-    qrcode.generate(qr, { small: true });
+    QRCode.toFile("./download/attachment.png", qr, function (err) {return err})
+    embed.sendUf("Login required!", "./attachment.png", find(LogChannel, client))
     client.user.setActivity(`WhatsApp QR Code.`, {
         type: "WATCHING"
     })
