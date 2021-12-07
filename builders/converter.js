@@ -1,7 +1,7 @@
 const fs = require('fs')
 const { GuildID } = require('../config.json')
 const embed = require('./embed')
-const { search } = require('./numtodata')
+const { write, getLate } = require('./fs')
 
 module.exports = {
 
@@ -27,25 +27,17 @@ module.exports = {
         setTimeout(function () {
 
             if (fs.existsSync(`./users/${number}.json`)) {
-                const data = JSON.parse(fs.readFileSync(`./users/${number}.json`, { encoding: 'utf8' }))
+                const data = JSON.parse(getLate(number))
 
                 const split = data.name.split(" ")
-                
 
                 if (split[0] == "Unknown" && data.channel != null) {
-                    const NewDataObj = { number: data.number, name: name, sensetive: data.sensetive, channel: data.channel, group: data.group, remote: data.remote }
-                    fs.writeFile(`./users/${data.number}.json`, JSON.stringify(NewDataObj), err => { return err })
-
+                    write(data.number, name, data.sensetive, data.channel, data.group, data.remote)
                     const channel = client.guilds.cache.find(element => element == GuildID).channels.cache.find(element => element == data.channel)
                     channel.setName(name)
                     embed.linking(name, channel)
                 }
-
-
             }
-
         }, 5000)
-
     }
-
 }

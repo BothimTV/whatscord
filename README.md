@@ -3,7 +3,7 @@ A bot that connects your WhatsApp with a Discord bot!
 This is my first public bot - its going to get better later!
 It creates automaticly new channels for receved messages and more.
 
-You can start the bot with `node main.js` - to get the slash commands use `node deploy-commands.js`
+You can start the bot with `node main.js`
 IF THE CHANNEL NAME IS NOT UPDATING - WAIT 10 MIN AND TRY AGAIN!
 IF YOU DELETE AN CHANNEL THE BOT WILL CRASH AT NEW MEEAGES TO THE CONTACT - TO FIX THAT, DELETE THE NUMBER(.json) UNDER "/users/number.json"!
 
@@ -22,8 +22,8 @@ IF YOU DELETE AN CHANNEL THE BOT WILL CRASH AT NEW MEEAGES TO THE CONTACT - TO F
   ![image](https://user-images.githubusercontent.com/50715457/144756303-2c106268-23a3-48f0-835e-f709aff300f7.png)
 7. Get all Channel and the Guild ID (Group Category, Chat Category, Log Channel, Sensetive Channel)
 8. Save All informations in the config.json
-9. Install: discord.js, fs, request, whatsapp-web.js, node-cron, qrcode-terminal, @discordjs/rest, discord-api-types 
-   `npm i discord.js fs request whatsapp-web.js node-cron qrcode-terminal @discordjs/rest discord-api-types` 
+9. Install: discord.js, fs, request, whatsapp-web.js, node-cron, qrcode, @discordjs/rest, discord-api-types 
+   `npm run install` 
    NodeJS version 16.6 is required
 10. Scan the QR Code from the console - enjoy!
 
