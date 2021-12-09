@@ -1,8 +1,8 @@
 const fs = require('fs')
 
 module.exports = {
-    
-    get(msg){
+
+    get(msg) {
         const numberS = msg.id.remote.split("@")
 
         if (!fs.existsSync(`./users/${numberS[0]}.json`)) {
@@ -48,8 +48,18 @@ module.exports = {
     },
 
     write(number, name, sensetive, channel, group, remote) {
-        const NewDataObj = { number: number, name: name, sensetive: sensetive, channel: channel.id, group: group, remote: remote }
+        const NewDataObj = { number: number, name: name, sensetive: sensetive, channel: channel, group: group, remote: remote }
         fs.writeFile(`./users/${number}.json`, JSON.stringify(NewDataObj), err => { return err })
+    },
+
+    usrSettGet() {
+        const data = fs.readFileSync(`./usrsetting.json`, { encoding: 'utf8' })
+        return data
+    },
+
+    usrSettSet(log, sensetive) {
+        const NewDataObj = { log: log, sensetive: sensetive }
+        fs.writeFile(`./usrsetting.json`, JSON.stringify(NewDataObj), err => { return err })
     }
 
 }

@@ -19,7 +19,6 @@ module.exports = {
 
         restClient.put(Routes.applicationGuildCommands(ApplicationID, GuildID),
             { body: commands })
-            .then(() => console.log("Sucessfully registered Commands!"))
             .catch(console.error)
 
 
