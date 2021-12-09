@@ -60,12 +60,6 @@ module.exports = {
         }, 2000)
     },
 
-
-
-
-
-
-
     send(msg, waClient) {
         const searchID = msg.channel.id
         const message = msg.content.toString()
@@ -86,7 +80,7 @@ module.exports = {
 
                         request(attachment.attachment).pipe(fs.createWriteStream(`./download/discord/attachment.${ende}`))
                         setTimeout(function () {
-                            waClient.sendMessage(data.remote, MessageMedia.fromFilePath(`./download/discord/attachment.${ende}`));
+                            waClient.sendMessage(data.remote, MessageMedia.fromFilePath(`./download/discord/attachment.${ende}`), {"linkPreview": true})
                         }, 1000)
                     })
                     )

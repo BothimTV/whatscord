@@ -109,3 +109,11 @@ client.once('ready', () => {
 })
 
 client.login(token);
+
+module.exports = {
+
+    getWaClient() {
+        return waClient
+    }
+
+}

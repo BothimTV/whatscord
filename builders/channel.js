@@ -11,7 +11,7 @@ module.exports = {
             type: "GUILD_TEXT"
         }).then((channel) => {
             channel.setParent(GroupParentID)
-            write(data.number, data.name, data.sensetive, channel, data.group, data.remote)
+            write(data.number, data.name, data.sensetive, channel.id, data.group, data.remote)
             if (file) {
                 embed.sendGf(message, file, channel, msg.author)
             } else {
@@ -26,7 +26,7 @@ module.exports = {
             type: "GUILD_TEXT"
         }).then((channel) => {
             channel.setParent(UserParentID)
-            write(data.number, data.name, data.sensetive, channel, data.group, data.remote)
+            write(data.number, data.name, data.sensetive, channel.id, data.group, data.remote)
             if (file) {
                 embed.sendUf(message, file, channel, msg.author)
             } else {

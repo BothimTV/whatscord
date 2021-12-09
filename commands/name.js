@@ -25,10 +25,10 @@ module.exports = {
         const users = fs.readdirSync('./users').filter(file => file.endsWith('.json'));
 
         users.forEach((user) => {
-            const data = JSON.parse(getLate(user))
+            const User = user.split(".json")
+            const data = JSON.parse(getLate(User[0]))
             if (data.channel == searchID) {
-
-                write(data.number, name, data.sensetive, data.channel, data.group, data.remote)
+                write(data.number, name, data.sensetive, data.channel, data.group, data.remote) // unknown reason for data loss
                 interaction.guild.channels.cache.find(element => element == data.channel).setName(name)
                 embed.reply("Erfolg", "Der Name wurde erfolgrauch gesetzt!", interaction, false, 5)
                 return
